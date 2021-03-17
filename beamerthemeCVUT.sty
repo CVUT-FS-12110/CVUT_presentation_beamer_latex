@@ -1,0 +1,135 @@
+\usepackage{setspace}
+
+\ProvidesPackage{beamerthemeCVUT}[2017/06/21]
+% CTU Beamer theme by Matous Cejnek
+
+
+\makeatletter
+\mode<presentation>
+\mode<all>
+
+
+% color stuff
+\definecolor{BlueCTU}{RGB}{65,105,225}
+\setbeamercolor{structure}{fg=BlueCTU}
+\setbeamercolor{frametitle}{fg=black,bg=black}
+\setbeamercolor{headline}{fg=black}
+
+\definecolor{light}{RGB}{0,0,0}
+\definecolor{dark}{RGB}{255,255,255}
+
+% set size
+\setbeamersize{text margin left=2.5em,text margin right=2em}
+
+% fonts
+\usefonttheme[onlymath]{serif}
+\usepackage{fontspec}
+\setsansfont[Path=fonts/]{Technika-Regular.ttf}%
+  [Ligatures=TeX,
+  BoldFont=Technika-Bold.ttf,
+  ItalicFont=Technika-Italic.ttf,
+  BoldItalicFont=Technika-BoldItalic.ttf]  
+\setbeamerfont{frametitle}{size=\huge}
+
+
+
+% bullets
+\useinnertheme{rectangles}
+
+
+% background
+\setbeamertemplate{background canvas}{%
+  \ifnum\c@framenumber=1% first slide
+  \includegraphics[width=\paperwidth,height=\paperheight]{source_img/front_\FRONTPAGE _\LANG .jpg}
+  \else% other slides
+  \includegraphics[width=\paperwidth,height=\paperheight]{source_img/background_\LANG .jpg}
+  \fi%
+}
+
+\setbeamerfont{footline}{size=\fontsize{9}{11}\selectfont}
+
+
+
+
+% title page
+\defbeamertemplate*{title page}{CVUTTitle}{
+  \vspace{0.1\paperheight}%
+  {\color{\FRONTPAGE}\setstretch{1.0}\LARGE\bf{\inserttitle\par~}}
+  % subtitle
+  \ifx\insertsubtitle\@empty\\[\baselineskip]
+    \else{
+    \\\color{\FRONTPAGE}
+    \vspace{0.1cm}
+    \insertsubtitle}\\
+  \fi
+  % author
+  \ifx\insertauthor\@empty\\
+    \else{
+    \color{\FRONTPAGE}
+    \vspace{0.9cm}
+    \insertauthor}\\
+  \fi
+  % author
+  \ifx\insertinstitute\@empty\\
+    \else{
+    \color{\FRONTPAGE}
+    \vspace{0.1cm}
+    \insertinstitute}\\
+  \fi
+  % author
+  \ifx\insertdate\@empty\\
+    \else{
+    \color{\FRONTPAGE}
+    \vspace{0.1cm}
+    \insertdate}\\
+  \fi
+  \vfill
+}
+
+% frame title
+\setbeamertemplate{frametitle}{
+    \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+    \@tempdima=\textwidth%
+    \advance\@tempdima by\beamer@leftmargin%
+    \advance\@tempdima by\beamer@rightmargin%
+
+    \vspace{0.8cm}
+
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@ftecenter\endcsname\fi%
+    \strut\insertframetitle\strut\par%
+    {%
+        \ifx\insertframesubtitle\@empty%
+        \else%
+        {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+        \fi
+    }%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-.3cm\fi% 
+}
+
+
+% headline
+\setbeamertemplate{headline}{%
+\vspace{0.1cm}
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.95\paperwidth,ht=1.5cm, right]{headline}%
+    \headlineA
+    \linebreak
+    \vspace{0.2cm}
+    \linebreak
+    \headlineB
+    \linebreak
+    \vspace{0.2cm}
+    \linebreak
+    \headlineC
+    \end{beamercolorbox}%
+  }
+}
+\setbeamerfont{headline}{size=\fontsize{9}{11}\selectfont}
+
+
+\makeatother
+
+
